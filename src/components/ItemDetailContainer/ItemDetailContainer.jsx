@@ -23,8 +23,9 @@ export default function ItemDetailContainer() {
         getItem
         .then(res => {
             const data = (res.data.results)
-            const productFilter =  data.filter((el) => el.price > 2000)
-            setProducts(productFilter)       
+            const productFilter =  data.filter((el) => el.id === 'MLA929120911')
+            setProducts(productFilter)  
+    
         })
         .catch((err) => console.log(err))
     },[])
@@ -32,6 +33,6 @@ export default function ItemDetailContainer() {
     console.log(products)
 
     return (
-        <ItemDetail products={products} />
+        products.map((producto) => <ItemDetail producto={producto} key={producto.id}/>)
     )
 }
